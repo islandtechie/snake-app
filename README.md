@@ -1,2 +1,2 @@
-# snake-app
-This is Snake App Game created using javascript
+# Snake Game App
+This is a Snake Game App created using javascript.
