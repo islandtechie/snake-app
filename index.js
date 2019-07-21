@@ -23,6 +23,27 @@ class Snake {
     }
 }
 
+class Apple {
+    constructor(gameWidth, gameHeight) {
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+        this.size = 10;
+        
+
+        this.position = {
+            x: 310,
+            y: 310,
+        }
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = "red";
+        ctx.beginPath(); 
+        ctx.arc(this.position.x, this.position.y, this.size, 0, 2 * Math.PI, false); 
+        ctx.fill();
+    }
+}
+
 let canvas = document.getElementById('game-screen');
 let ctx = canvas.getContext('2d');
 
@@ -33,6 +54,7 @@ let lastTime = 0;
 
 
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
+let apple = new Apple(GAME_WIDTH, GAME_HEIGHT);
 
 
 
@@ -40,6 +62,7 @@ let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 ctx.fillStyle = "green";
 ctx.fillRect(0,60,800, 540);
 snake.draw(ctx);
+apple.draw(ctx);
 
 function gameLoop(timestamp) {
     
@@ -69,15 +92,13 @@ function gameLoop(timestamp) {
 
     //apple on board temp
     //red apples
-    ctx.fillStyle = "red";
-    ctx.beginPath(); 
-    ctx.arc(310, 310, 10, 0, 2 * Math.PI, false); 
-    ctx.fill(); 
+     
 
     
     
     snake.update(dt);
     snake.draw(ctx);
+    apple.draw(ctx);
 
     
 
