@@ -1,9 +1,20 @@
+class GameBoard {
+    constructor(width, height) {
+       this.width = width;
+       this.height = height;
+    }
+
+    draw(ctx){
+        ctx.fillStyle = "green";
+        ctx.fillRect(0, 60, this.width, this.height);
+    }
+}
 class Snake {
     constructor(gameWidth, gameHeight) {
         this.gameWidth = gameWidth;
         this.height = 20;
         this.width = 20;
-        this.speed = 0;
+        this.speed = 5;
         this.length = 6;
 
         this.position = [
@@ -11,22 +22,39 @@ class Snake {
                 x: 260,
                 y: 300,
             }
+        ]
     }
 
-    calculateBodyPositions(length) {
-        for (let i = 0; i < cars.length; i++) { 
-            text += cars[i] + "<br>";
-          }
+    calculateBodyPositions(length, headPostion) {
+        console.log(headPostion.x);
+        for (let i = 0; i < this.length; i++) { 
+            if (i !== 0) {
+               this.position.push(
+                   {
+                       x: headPostion.x - (i * 20),
+                       y: 300
+                   }
+               );
+            }else{
+                this.position = [
+                    {
+                        x: headPostion.x,
+                        y: 300,
+                    }
+                ]
+            }
+        }
+
+        console.log(this.position);
     }
 
     draw(ctx) {
+
+
         ctx.fillStyle = 'black';
-        ctx.fillRect(this.position.x, this.position.y, this.height, this.width);
-        ctx.fillRect(this.position.x - 20, this.position.y, this.height, this.width);
-        ctx.fillRect(this.position.x - 40, this.position.y, this.height, this.width);
-        ctx.fillRect(this.position.x - 60, this.position.y, this.height, this.width);
-        ctx.fillRect(this.position.x - 80, this.position.y, this.height, this.width);
-        ctx.fillRect(this.position.x - 80, this.position.y - 20, this.height, this.width);
+        for (let i = 0; i < this.position.length; i++) { 
+            ctx.fillRect(this.position[i].x, this.position[i].y, this.height, this.width);
+        }
     }
 
     moveLeft() {
@@ -39,7 +67,8 @@ class Snake {
 
     update(dt) {
         if (!dt) return;
-        this.position.x += this.speed / dt;
+        this.calculateBodyPositions(this.length, this.position[0]);
+        this.position[0].x += this.speed / dt;
         //this.position.y -= this.speed / dt;
     }
 
@@ -97,15 +126,18 @@ let lastTime = 0;
 
 
 
+let gameBoard = new GameBoard(GAME_WIDTH, GAME_HEIGHT);
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 let apple = new Apple(GAME_WIDTH, GAME_HEIGHT);
 let inputHandler = new InputHandler(snake);
 
 
 
+
+
+
 //game board
-ctx.fillStyle = "green";
-ctx.fillRect(0,60,800, 540);
+gameBoard.draw(ctx);
 snake.draw(ctx);
 apple.draw(ctx);
 
