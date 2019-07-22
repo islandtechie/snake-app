@@ -1,0 +1,7 @@
+for (let i = 0;i < this.length - 1;i++) {
+            if (i = 0) {
+                ctx.fillRect(this.position.x, this.position.y, this.height, this.width);
+            }else{
+                ctx.fillRect(this.position.x - (i * 20), this.position.y, this.height, this.width);
+            }
+        }

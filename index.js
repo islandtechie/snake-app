@@ -3,39 +3,47 @@ class Snake {
         this.gameWidth = gameWidth;
         this.height = 20;
         this.width = 20;
-        this.speed = 2;
+        this.speed = 0;
+        this.length = 6;
 
         this.position = [
             {
                 x: 260,
                 y: 300,
             }
-        ]
+    }
+
+    calculateBodyPositions(length) {
+        for (let i = 0; i < cars.length; i++) { 
+            text += cars[i] + "<br>";
+          }
     }
 
     draw(ctx) {
         ctx.fillStyle = 'black';
-        ctx.fillRect(this.position[0].x, this.position[0].y, this.height, this.width);
-        ctx.fillRect(this.position[0].x - 20, this.position[0].y, this.height, this.width);
-        ctx.fillRect(this.position[0].x - 40, this.position[0].y, this.height, this.width);
-        ctx.fillRect(this.position[0].x - 60, this.position[0].y, this.height, this.width);
-        ctx.fillRect(this.position[0].x - 80, this.position[0].y, this.height, this.width);
-        //ctx.fillRect(this.position[0].x - 80, this.position[0].y - 20, this.height, this.width);
+        ctx.fillRect(this.position.x, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position.x - 20, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position.x - 40, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position.x - 60, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position.x - 80, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position.x - 80, this.position.y - 20, this.height, this.width);
+    }
+
+    moveLeft() {
+        this.speed = -this.speed;
+    }
+
+    moveRight() {
+        this.speed = -this.speed;
     }
 
     update(dt) {
         if (!dt) return;
-        this.position[0].x += this.speed / dt;
+        this.position.x += this.speed / dt;
         //this.position.y -= this.speed / dt;
     }
 
-    moveLeft() {
-        alert('moving left');
-    }
-
-    moveRight() {
-        alert('moving right');
-    }
+    
 }
 
 class Apple {
