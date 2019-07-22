@@ -5,21 +5,36 @@ class Snake {
         this.width = 20;
         this.speed = 2;
 
-        this.position = {
-            x: 200,
-            y: 300,
-        }
+        this.position = [
+            {
+                x: 260,
+                y: 300,
+            }
+        ]
     }
 
     draw(ctx) {
         ctx.fillStyle = 'black';
-        ctx.fillRect(this.position.x, this.position.y, this.height, this.width);
+        ctx.fillRect(this.position[0].x, this.position[0].y, this.height, this.width);
+        ctx.fillRect(this.position[0].x - 20, this.position[0].y, this.height, this.width);
+        ctx.fillRect(this.position[0].x - 40, this.position[0].y, this.height, this.width);
+        ctx.fillRect(this.position[0].x - 60, this.position[0].y, this.height, this.width);
+        ctx.fillRect(this.position[0].x - 80, this.position[0].y, this.height, this.width);
+        //ctx.fillRect(this.position[0].x - 80, this.position[0].y - 20, this.height, this.width);
     }
 
     update(dt) {
         if (!dt) return;
-        this.position.x += this.speed / dt;
-        this.position.y -= this.speed / dt;
+        this.position[0].x += this.speed / dt;
+        //this.position.y -= this.speed / dt;
+    }
+
+    moveLeft() {
+        alert('moving left');
+    }
+
+    moveRight() {
+        alert('moving right');
     }
 }
 
@@ -44,6 +59,27 @@ class Apple {
     }
 }
 
+class InputHandler{ 
+    constructor(snake) {
+        document.addEventListener('keydown', (e) => {
+            switch(e.keyCode) {
+                case 37:
+                    snake.moveLeft();
+                    break;
+                case 38:
+                    break;
+                case 39:
+                    snake.moveRight();
+                    break;
+                case 40:
+                    break;
+            }
+        });
+    }
+}
+
+//up 38 down 40 39 right 37 left 32 spacebar
+
 let canvas = document.getElementById('game-screen');
 let ctx = canvas.getContext('2d');
 
@@ -55,6 +91,7 @@ let lastTime = 0;
 
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 let apple = new Apple(GAME_WIDTH, GAME_HEIGHT);
+let inputHandler = new InputHandler(snake);
 
 
 
@@ -69,7 +106,7 @@ function gameLoop(timestamp) {
     let dt = timestamp - lastTime;
     lastTime = timestamp;
 
-    ctx.clearRect(0,60,800,540)
+    ctx.clearRect(0,0,800,600)
 
     //red apples
     ctx.fillStyle = "red";
