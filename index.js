@@ -12,8 +12,7 @@ class GameBoard {
 class Snake {
     constructor(gameWidth, gameHeight) {
         this.gameWidth = gameWidth;
-        this.height = 20;
-        this.width = 20;
+        this.size = 20;
         this.speed = 5;
         this.length = 6;
 
@@ -31,7 +30,7 @@ class Snake {
             if (i !== 0) {
                this.position.push(
                    {
-                       x: headPostion.x - (i * 20),
+                       x: headPostion.x - (i * this.size),
                        y: 300
                    }
                );
@@ -53,7 +52,7 @@ class Snake {
 
         ctx.fillStyle = 'black';
         for (let i = 0; i < this.position.length; i++) { 
-            ctx.fillRect(this.position[i].x, this.position[i].y, this.height, this.width);
+            ctx.fillRect(this.position[i].x, this.position[i].y, this.size, this.size);
         }
     }
 
