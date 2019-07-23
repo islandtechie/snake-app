@@ -13,9 +13,9 @@ class Snake {
     constructor(gameWidth, gameHeight) {
         this.gameWidth = gameWidth;
         this.size = 20;
-        this.speed = 5;
-        this.length = 6;
-
+        this.bodyLength = 4;
+        this.maxSpeed = 5;
+        this.speed = { x: 5, y: 0};
         this.position = [
             {
                 x: 260,
@@ -24,32 +24,9 @@ class Snake {
         ]
     }
 
-    calculateBodyPositions(length, headPostion) {
-        console.log(headPostion.x);
-        for (let i = 0; i < this.length; i++) { 
-            if (i !== 0) {
-               this.position.push(
-                   {
-                       x: headPostion.x - (i * this.size),
-                       y: 300
-                   }
-               );
-            }else{
-                this.position = [
-                    {
-                        x: headPostion.x,
-                        y: 300,
-                    }
-                ]
-            }
-        }
-
-        console.log(this.position);
-    }
+    
 
     draw(ctx) {
-
-
         ctx.fillStyle = 'black';
         for (let i = 0; i < this.position.length; i++) { 
             ctx.fillRect(this.position[i].x, this.position[i].y, this.size, this.size);
@@ -57,18 +34,98 @@ class Snake {
     }
 
     moveLeft() {
-        this.speed = -this.speed;
+        this.speed.x = -this.maxSpeed;
+        this.speed.y = 0;
+        for (let i = 0; i < this.bodyLength; i++) { 
+            if (i !== 0) {
+               this.position.push(
+                   {
+                       x: this.position[0].x - (i * this.size),
+                       y: this.position[0].y
+                   }
+               );
+            }else{
+                this.position = [
+                    {
+                        x: headPostion.x,
+                        y: headPostion.y,
+                    }
+                ]
+            }
+        }
     }
 
     moveRight() {
-        this.speed = -this.speed;
+        this.speed.x = this.maxSpeed;
+        this.speed.y = 0;
+        for (let i = 0; i < this.bodyLength; i++) { 
+            if (i !== 0) {
+               this.position.push(
+                   {
+                       x: this.position[0].x + (i * this.size),
+                       y: this.position[0].x
+                   }
+               );
+            }else{
+                this.position = [
+                    {
+                        x: headPostion.x,
+                        y: headPostion.y,
+                    }
+                ]
+            }
+        }
+    }
+
+    moveUp() {
+        this.speed.y = -this.maxSpeed;
+        this.speed.x = 0;
+        for (let i = 0; i < this.bodyLength; i++) { 
+            if (i !== 0) {
+               this.position.push(
+                   {
+                       x: this.position[0].x,
+                       y: this.position[0].y - (i * this.size)
+                   }
+               );
+            }else{
+                this.position = [
+                    {
+                        x: this.position[0].x,
+                        y: this.position[0].y,
+                    }
+                ]
+            }
+        }
+
+    }
+
+    moveDown() {
+        this.speed.y = this.maxSpeed;
+        this.speed.x = 0
+        for (let i = 0; i < this.bodyLength; i++) { 
+            if (i !== 0) {
+               this.position.push(
+                   {
+                       x: this.position[0].x,
+                       y: this.position[0].y + (i * this.size)
+                   }
+               );
+            }else{
+                this.position = [
+                    {
+                        x: this.position[0].x,
+                        y: this.position[0].y,
+                    }
+                ]
+            }
+        }
+    
     }
 
     update(dt) {
-        if (!dt) return;
-        this.calculateBodyPositions(this.length, this.position[0]);
-        this.position[0].x += this.speed / dt;
-        //this.position.y -= this.speed / dt;
+        this.position[0].x += this.speed.x / dt;
+        this.position[0].y += this.speed.y / dt;
     }
 
     
@@ -103,11 +160,13 @@ class InputHandler{
                     snake.moveLeft();
                     break;
                 case 38:
+                    snake.moveUp();
                     break;
                 case 39:
                     snake.moveRight();
                     break;
                 case 40:
+                    snake.moveDown();
                     break;
             }
         });
