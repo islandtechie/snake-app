@@ -50,6 +50,23 @@ class Snake {
     }
 }
 
+class Apple {
+    constructor( x,y) {
+        this.size = 10;
+        
+        this.position = {
+            x: x,
+            y: y,
+        }
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = "red";
+        ctx.beginPath(); 
+        ctx.arc(this.position.x, this.position.y, this.size, 0, 2 * Math.PI, false); 
+        ctx.fill();
+    }
+}
 let canvas = document.getElementById('game-screen');
 let context = canvas.getContext('2d');
 
@@ -58,6 +75,7 @@ const GAME_HEIGHT = 540;
 
 let gameBoard = new GameBoard(GAME_WIDTH, GAME_HEIGHT);
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
+let apple = new Apple(310, 310);
 
 
 window.onload = () => {
@@ -66,6 +84,7 @@ window.onload = () => {
     drawGameTitleArea();
     gameBoard.draw(context);
     snake.draw(context);
+    apple.draw(context);
 
 }
 
