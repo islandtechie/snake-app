@@ -17,7 +17,7 @@ class Snake {
         this.size = 20;
         this.bodyLength = 1;
         //this.maxSpeed = 5;
-        //this.speed = { x: 5, y: 0};
+        this.speed = { x: 2, y: 0};
         this.position = [
             {
                 x: 260,
@@ -48,6 +48,10 @@ class Snake {
              ctx.fillRect(this.position[i].x, this.position[i].y, this.size, this.size);
         }
     }
+
+    update() {
+        this.position[0].x += this.speed.x;
+    }
 }
 
 class Apple {
@@ -72,6 +76,7 @@ let context = canvas.getContext('2d');
 
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 540;
+const framesPerSecond = 30;
 
 let gameBoard = new GameBoard(GAME_WIDTH, GAME_HEIGHT);
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
@@ -79,13 +84,17 @@ let apple = new Apple(310, 310);
 
 
 window.onload = () => {
-    console.log('ready');
+    init();
 
+    setInterval(redrawScreen, 1000 / framesPerSecond);
+
+}
+
+function init() {
     drawGameTitleArea();
     gameBoard.draw(context);
     snake.draw(context);
     apple.draw(context);
-
 }
 
 function drawGameTitleArea() {
@@ -104,4 +113,15 @@ function drawGameTitleArea() {
     context.font = '32px fantasy';
     context.fillStyle = "black";
     context.fillText('SNAKE', 365, 50);
+}
+
+function redrawScreen() {
+    var count = 0;
+    console.log(count++);
+    context.clearRect(0,0,800,600);
+    drawGameTitleArea();
+    gameBoard.draw(context);
+    apple.draw(context);
+    snake.update();
+    snake.draw(context);
 }
