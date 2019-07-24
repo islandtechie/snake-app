@@ -81,7 +81,7 @@ class Snake {
 
 class Apple {
     constructor( x,y) {
-        this.size = 10;
+        this.size = 9;
         
         this.position = {
             x: x,
@@ -119,19 +119,16 @@ let context = canvas.getContext('2d');
 
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 540;
-const framesPerSecond = 30;
 
 let gameBoard = new GameBoard(GAME_WIDTH, GAME_HEIGHT);
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 let apple = new Apple(310, 310);
 
-let count = 0;
 
 window.onload = () => {
     init();
-
+    let framesPerSecond = 20;
     setInterval(redrawScreen, 1000 / framesPerSecond);
-
 }
 
 function init() {
