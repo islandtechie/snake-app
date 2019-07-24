@@ -16,7 +16,7 @@ class Snake {
         this.gameWidth = gameWidth;
         this.size = 20;
         this.bodyLength = 1;
-        //this.maxSpeed = 5;
+        this.maxSpeed = 2;
         this.speed = { x: 2, y: 0};
         this.position = [
             {
@@ -51,6 +51,31 @@ class Snake {
 
     update() {
         this.position[0].x += this.speed.x;
+        this.position[0].y += this.speed.y;
+    }
+
+    moveLeft() {
+        this.speed.x = -this.maxSpeed;
+        this.speed.y = 0;
+        console.log('left',this.speed.x);
+    }
+
+    moveRight() {
+        this.speed.x = this.maxSpeed;
+        this.speed.y = 0;
+        console.log('right',this.speed.x);
+    }
+
+    moveUp() {
+        this.speed.y = -this.maxSpeed;
+        this.speed.x = 0;
+        console.log('up',this.speed.y);
+    }
+
+    moveDown() {
+        this.speed.y = this.maxSpeed;
+        this.speed.x = 0;
+        console.log('up',this.speed.y);
     }
 }
 
@@ -71,6 +96,24 @@ class Apple {
         ctx.fill();
     }
 }
+
+document.addEventListener('keydown', (e) => {
+    switch(e.keyCode) {
+        case 37:
+            snake.moveLeft();
+            break;
+        case 38:
+            snake.moveUp();
+            break;
+        case 39:
+            snake.moveRight();
+            break;
+        case 40:
+            snake.moveDown();
+            break;
+    }
+});
+
 let canvas = document.getElementById('game-screen');
 let context = canvas.getContext('2d');
 
@@ -82,6 +125,7 @@ let gameBoard = new GameBoard(GAME_WIDTH, GAME_HEIGHT);
 let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 let apple = new Apple(310, 310);
 
+let count = 0;
 
 window.onload = () => {
     init();
@@ -116,8 +160,6 @@ function drawGameTitleArea() {
 }
 
 function redrawScreen() {
-    var count = 0;
-    console.log(count++);
     context.clearRect(0,0,800,600);
     drawGameTitleArea();
     gameBoard.draw(context);
