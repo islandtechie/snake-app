@@ -36,7 +36,7 @@ class GameManager {
                 console.log(this.snake.body);
                 break;
             case 'DOWN':
-                this.snake.body.y += this.snake.speed;
+                this.snake.body[0].y += this.snake.speed;
                 break;
         }
     }
