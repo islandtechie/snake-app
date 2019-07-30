@@ -5,6 +5,12 @@ const gameManager = new GameManager(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 
 window.onload = () => {
     gameManager.initializeGame();
+
     let framesPerSecond = 20;
-    setInterval(gameManager.updateScreen, 1000 / framesPerSecond); 
+
+    setInterval(() => { 
+        gameManager.clearGameBoard();
+        gameManager.updateScreen(); }, 
+        1000 / framesPerSecond
+    ); 
 }
