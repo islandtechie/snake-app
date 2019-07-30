@@ -1,5 +1,9 @@
 class GameManager {
-    constructor(gameBoard, apple, snake) {
-        thi
+    constructor(gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    init() {
+        this.gameBoard.draw();
     }
 }
