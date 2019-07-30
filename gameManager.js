@@ -3,7 +3,7 @@ class GameManager {
         this.gameBoard = gameBoard;
     }
 
-    init() {
+    initializeGame() {
         this.gameBoard.draw();
     }
 }

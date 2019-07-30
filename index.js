@@ -4,4 +4,4 @@ const gameBoard = new GameBoard(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 
 const gameManager = new GameManager(gameBoard);
 
-gameManager.init();
+gameManager.initializeGame();
