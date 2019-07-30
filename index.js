@@ -3,4 +3,10 @@ const GAMEBOARD_HEIGHT = 540;
 
 const gameManager = new GameManager(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 
-gameManager.initializeGame();
+
+window.onload = () => {
+    gameManager.initializeGame();
+    let framesPerSecond = 20;
+    setInterval(gameManager.updateScreen, 1000 / framesPerSecond);
+  
+}

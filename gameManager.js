@@ -25,4 +25,8 @@ class GameManager {
         this.gameBoard.ctx.arc(this.apple.position.x, this.apple.position.y, this.apple.size, 0, 2 * Math.PI, false); 
         this.gameBoard.ctx.fill();
     }
+
+    updateScreen() {
+        
+    }
 }

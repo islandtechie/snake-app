@@ -322,11 +322,7 @@ let snake = new Snake(GAME_WIDTH, GAME_HEIGHT);
 let apple = new Apple(310, 310);
 
 
-window.onload = () => {
-    init();
-    let framesPerSecond = 20;
-    setInterval(redrawScreen, 1000 / framesPerSecond);
-}
+
 
 function init() {
     drawGameTitleArea();
