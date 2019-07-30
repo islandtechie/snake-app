@@ -2,7 +2,7 @@ class GameManager {
     constructor(gameBoardWidth, gameBoardheight) {
         this.gameBoard = new GameBoard(gameBoardWidth, gameBoardheight);
         this.snake = new Snake();
-        
+        this.inputHandler = new InputHandler(this.snake);       
     }
 
     initializeGame() {
@@ -13,9 +13,26 @@ class GameManager {
 
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';
-        for (let i = 0; i < this.snake.position.length; i++) { 
-            this.gameBoard.ctx.fillRect(this.snake.position[i].x, this.snake.position[i].y, this.snake.size, this.snake.size);
+        for (let i = 0; i < this.snake.body.length; i++) { 
+            this.gameBoard.ctx.fillRect(this.snake.body[i].x, this.snake.body[i].y, this.snake.size, this.snake.size);
         }
+    }
+
+    updateSnake() {
+        switch(this.snake.direction) {
+            case 'LEFT':
+                this.snake.body.x -= this.snake.speed;
+                break;
+            case 'UP':
+                this.snake.body.y -= this.snake.speed;
+                break;
+            case 'RIGHT':
+                this.snake.body.x += this.snake.speed;
+                break;
+            case 'DOWN':
+                this.snake.body.y += this.snake.speed;
+                break;
+        };
     }
 
     drawApple() {
@@ -27,6 +44,7 @@ class GameManager {
     }
 
     updateScreen() {
-        
+        this.updateSnake();
+        this.drawSnake();
     }
 }
