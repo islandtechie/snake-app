@@ -1,5 +1,5 @@
 class GameBoard {
-    constructor(width, height) {
+    constructor(width, height, context) {
        this.width = width;
        this.height = height;
     }
