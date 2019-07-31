@@ -13,31 +13,9 @@ class GameManager {
 
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';
-        for (let i = 0; i < this.snake.body.length; i++) { 
+        for (let i = 0; i < this.snake.body.length; i++) {
+            console.log(i);
             this.gameBoard.ctx.fillRect(this.snake.body[i].x, this.snake.body[i].y, this.snake.size, this.snake.size);
-        }
-    }
-
-    updateSnake() {
-        console.log('reach');
-        console.log(this.snake.direction);
-        switch(this.snake.direction) {
-            case 'LEFT':
-                this.snake.body[0].x -= this.snake.speed;
-                break;
-            case 'UP':
-                this.snake.body[0].y -= this.snake.speed;
-                break;
-            case 'RIGHT':
-                console.log('=============BEFORE==============')
-                console.log(this.snake.body);
-                this.snake.body[0].x += this.snake.speed;
-                console.log('=============AFTER==============')
-                console.log(this.snake.body);
-                break;
-            case 'DOWN':
-                this.snake.body[0].y += this.snake.speed;
-                break;
         }
     }
 
@@ -52,7 +30,7 @@ class GameManager {
     updateScreen() {
         this.gameBoard.draw();
         this.drawApple();
-        this.updateSnake();
+        this.snake.move();
         this.drawSnake();
     }
 

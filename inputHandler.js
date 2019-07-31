@@ -3,16 +3,16 @@ class InputHandler {
         document.addEventListener('keydown', (e) => {
             switch(e.keyCode) {
                 case 37:
-                    snake.move('LEFT');
+                    snake.direction = 'LEFT';
                     break;
                 case 38:
-                    snake.move('UP');
+                    snake.direction = 'UP';
                     break;
                 case 39:
-                    snake.move('RIGHT');
+                    snake.direction = 'RIGHT';
                     break;
                 case 40:
-                    snake.move('DOWN');
+                    snake.direction = 'DOWN';
                     break;
             }
         });
