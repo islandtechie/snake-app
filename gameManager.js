@@ -14,7 +14,6 @@ class GameManager {
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';
         for (let i = 0; i < this.snake.body.length; i++) {
-            console.log(i);
             this.gameBoard.ctx.fillRect(this.snake.body[i].x, this.snake.body[i].y, this.snake.size, this.snake.size);
         }
     }
