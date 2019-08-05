@@ -11,6 +11,17 @@ class GameManager {
         this.drawApple();
     }
 
+    detectCollision() {
+        if (this.snake.body[0].x === this.gameBoard.width || 
+            this.snake.body[0].x === 0 ||
+            this.snake.body[0].y === this.gameBoard.titleHeight - this.snake.size || 
+            this.snake.body[0].y === (this.snake.size) ) {
+            console.log(this.snake.body[0].x);
+            console.log(this.snake.body[0].y);
+            console.log('ok hit');
+        }
+    }
+
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';
         for (let i = 0; i < this.snake.body.length; i++) {
@@ -31,9 +42,11 @@ class GameManager {
         this.drawApple();
         this.snake.move();
         this.drawSnake();
+        this.detectCollision();
     }
 
     clearGameBoard() {
+        
         this.gameBoard.ctx.clearRect(0,0,800,600);
     }
 }

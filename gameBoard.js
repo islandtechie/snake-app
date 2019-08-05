@@ -2,8 +2,9 @@ class GameBoard {
     constructor(width, height) {
        this.width = width;
        this.height = height;
+       this.titleHeight = 60;
        this.canvas = document.getElementById('game-screen');
-       this.ctx = this.canvas.getContext('2d');;
+       this.ctx = this.canvas.getContext('2d');
     }
 
     draw(){
@@ -31,7 +32,10 @@ class GameBoard {
 
     drawBoard() {
         this.ctx.fillStyle = "green";
-        this.ctx.fillRect(0, 60, this.width, this.height);
+        this.ctx.fillRect(0, this.titleHeight, this.width, this.height);
     }
 
+    checkIfSnakeTouchCanvasWall() {
+        
+    }
 }
