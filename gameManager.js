@@ -26,7 +26,8 @@ class GameManager {
 
         if (this.snake.body[0].x === this.appleCell.x &&
              this.snake.body[0].y === this.appleCell.y) {
-                this.snake.body.push
+                this.generateRandomLocation();
+                
         }
    
     }
