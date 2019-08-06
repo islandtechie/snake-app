@@ -13,9 +13,9 @@ class GameManager {
 
     detectCollision() {
         if (this.snake.body[0].x === this.gameBoard.width || 
-            this.snake.body[0].x === 0 ||
+            this.snake.body[0].x === -this.snake.size ||
             this.snake.body[0].y === this.gameBoard.titleHeight - this.snake.size || 
-            this.snake.body[0].y === (this.snake.size) ) {
+            this.snake.body[0].y === this.gameBoard.canvas.height) {
             console.log(this.snake.body[0].x);
             console.log(this.snake.body[0].y);
             console.log('ok hit');
