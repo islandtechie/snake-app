@@ -5,7 +5,7 @@ class GameManager {
         this.inputHandler = new InputHandler(this.snake);
         this.appleLocation = {x: null, y: null};
         this.appleCell = {x: null, y: null};
-        this.gameStatus = null;       
+        this.gameStatus = null;     
     }
 
     initializeGame() {
@@ -26,6 +26,7 @@ class GameManager {
 
         if (this.snake.body[0].x === this.appleCell.x &&
              this.snake.body[0].y === this.appleCell.y) {
+                this.addScore();
                 this.generateRandomLocation();
                 this.snake.grow();
                 
@@ -34,7 +35,10 @@ class GameManager {
    
     }
 
-    
+    addScore() {
+        this.gameBoard.scorelabel += 1;
+    }
+
 
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';

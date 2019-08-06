@@ -7,6 +7,8 @@ class GameBoard {
        this.titleHeight = 60;
        this.canvas = document.getElementById('game-screen');
        this.ctx = this.canvas.getContext('2d');
+       this.scorelabel = 0;
+
     }
 
     draw(){
@@ -23,7 +25,7 @@ class GameBoard {
 
         this.ctx.font = '28px fantasy';
         this.ctx.fillStyle = "black";
-        this.ctx.fillText('0', 55, 50);
+        this.ctx.fillText(this.scorelabel, 55, 50);
     }
 
     drawGameTitle() {
