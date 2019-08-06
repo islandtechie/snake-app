@@ -2,6 +2,8 @@ class GameBoard {
     constructor(width, height) {
        this.width = width;
        this.height = height;
+       this.gridX = this.width / 20;
+       this.gridY = this.height / 20;
        this.titleHeight = 60;
        this.canvas = document.getElementById('game-screen');
        this.ctx = this.canvas.getContext('2d');
