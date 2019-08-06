@@ -27,10 +27,14 @@ class GameManager {
         if (this.snake.body[0].x === this.appleCell.x &&
              this.snake.body[0].y === this.appleCell.y) {
                 this.generateRandomLocation();
+                this.snake.grow();
                 
+
         }
    
     }
+
+    
 
     drawSnake() {
         this.gameBoard.ctx.fillStyle = 'black';

@@ -50,4 +50,19 @@ class Snake {
             }
         }
     }
+
+    grow() {
+        if (this.direction === 'RIGHT') {
+            this.body.push({x: this.body[0].x + this.size, y: this.body[0].y});
+        }
+        if (this.direction === 'LEFT') {
+            this.body.push({x: this.body[0].x - this.size, y: this.body[0].y});
+        }
+        if (this.direction === 'UP') {
+            this.body.push({x: this.body[0].x, y: this.body[0].y - this.size}); 
+        }
+        if (this.direction === 'DOWN') {
+            this.body.push({x: this.body[0].x, y: this.body[0].y + this.size});   
+        }
+    }
 }
