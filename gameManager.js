@@ -2,7 +2,8 @@ class GameManager {
     constructor(gameBoardWidth, gameBoardheight) {
         this.gameBoard = new GameBoard(gameBoardWidth, gameBoardheight);
         this.snake = new Snake();
-        this.inputHandler = new InputHandler(this.snake);       
+        this.inputHandler = new InputHandler(this.snake);
+        this.appleLocation = {x: null, y: null}       
     }
 
     initializeGame() {
@@ -29,8 +30,26 @@ class GameManager {
         }
     }
 
+    generateRandomLocation(cooordinate) {
+        if (cooordinate === 'x'){
+            return Math.floor(Math.random() * (this.gameBoard.canvas.width));
+        }else {
+            return Math.floor(Math.random() * (this.gameBoard.canvas.height - this.gameBoard.titleHeight) + this.gameBoard.titleHeight);
+        }
+        
+    }
+    
+
     drawApple() {
-        this.apple = new Apple(310, 310);
+        this.appleLocation.x = this.generateRandomLocation('x');
+        this.appleLocation.y = this.generateRandomLocation('y');
+        console.log('x', this.appleLocation.x);
+        console.log('y', this.appleLocation.y);
+
+        if (this.appleLocation.x === this.snake.body[0].x || this.appleLocation.y === this.snake.body[0].y) {
+
+        }
+        this.apple = new Apple(this.appleLocation.x, this.appleLocation.y);
         this.gameBoard.ctx.fillStyle = "red";
         this.gameBoard.ctx.beginPath(); 
         this.gameBoard.ctx.arc(this.apple.position.x, this.apple.position.y, this.apple.size, 0, 2 * Math.PI, false); 
