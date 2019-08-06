@@ -15,8 +15,15 @@ if (DEBUG === true) {
 window.onload = () => {
     gameManager.initializeGame();
     setInterval(() => {
-        gameManager.clearGameBoard();
-        gameManager.updateScreen(); }, 
+        if (gameManager.gameStatus === 'GAME OVER') {
+            gameManager.showGameOverScreen();  
+        }else if (gameManager.gameStatus === 'NEW GAME'){
+            gameManager.initializeGame();
+        }else if (gameManager.gameStatus === 'IN PROGRESS') {
+            gameManager.clearGameBoard();
+            gameManager.updateScreen();
+        }
+    }, 
         gameTime
     ); 
 }

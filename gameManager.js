@@ -1,18 +1,32 @@
 class GameManager {
     constructor(gameBoardWidth, gameBoardheight) {
         this.gameBoard = new GameBoard(gameBoardWidth, gameBoardheight);
+        this.gameStatus = null;
         this.snake = new Snake();
         this.inputHandler = new InputHandler(this.snake);
         this.appleLocation = {x: null, y: null};
         this.appleCell = {x: null, y: null};
-        this.gameStatus = null;     
+             
     }
 
     initializeGame() {
+        this.gameStatus ='IN PROGRESS'
         this.generateRandomLocation();
         this.gameBoard.draw();
         this.drawSnake();
         this.drawApple();
+    }
+
+    showGameOverScreen() {
+        this.gameBoard.ctx.fillStyle = 'rgba(0, 0, 0, .2)';
+        this.gameBoard.ctx.fillRect(0,0,800,600);
+        this.gameBoard.ctx.font = '60px fantasy';
+        this.gameBoard.ctx.textBaseline = 'middle';
+        this.gameBoard.ctx.textAlign = "center";
+        this.gameBoard.ctx.fillStyle = "white";
+        this.gameBoard.ctx.fillText(this.gameStatus, 800/2, 540/2);
+        this.gameBoard.ctx.font = '28px fantasy';
+        this.gameBoard.ctx.fillText('Press F5 to start a New Game', 800/2, (540/2) + 80);
     }
 
     detectCollision() {
@@ -29,8 +43,6 @@ class GameManager {
                 this.addScore();
                 this.generateRandomLocation();
                 this.snake.grow();
-                
-
         }
    
     }
@@ -69,7 +81,6 @@ class GameManager {
         this.snake.move();
         this.drawSnake();
         this.detectCollision();
-
     }
 
     clearGameBoard() {

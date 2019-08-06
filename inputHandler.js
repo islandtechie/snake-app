@@ -1,5 +1,5 @@
 class InputHandler {
-    constructor(snake) {
+    constructor(snake, status) {
         document.addEventListener('keydown', (e) => {
             switch(e.keyCode) {
                 case 37:
@@ -17,6 +17,9 @@ class InputHandler {
                 case 40:
                     if (snake.direction === 'UP') {return;}
                     snake.direction = 'DOWN';
+                    break;
+                case 32:
+                    status = 'NEW GAME';
                     break;
             }
         });
