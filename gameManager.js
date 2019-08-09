@@ -44,6 +44,14 @@ class GameManager {
                 this.generateRandomLocation();
                 this.snake.grow();
         }
+
+        let head = this.snake.body[0];
+        for (let h = 1; h < this.snake.body.length; h++) {
+            if(head.x == this.snake.body[h].x && head.y == this.snake.body[h].y){
+                this.gameStatus = 'GAME OVER';
+                console.log(this.gameStatus);
+            }
+        }
    
     }
 
