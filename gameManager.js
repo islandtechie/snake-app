@@ -30,10 +30,10 @@ class GameManager {
     }
 
     detectCollision() {
-        if (this.snake.body[0].x === this.gameBoard.width || 
-            this.snake.body[0].x === -this.snake.size ||
-            this.snake.body[0].y === this.gameBoard.titleHeight - this.snake.size || 
-            this.snake.body[0].y === this.gameBoard.canvas.height) {
+        if (this.snake.body[0].x > this.gameBoard.width  - this.snake.size || 
+            this.snake.body[0].x < 0 ||
+            this.snake.body[0].y < this.gameBoard.titleHeight || 
+            this.snake.body[0].y > this.gameBoard.canvas.height  - this.snake.size) {
                 this.gameStatus = 'GAME OVER';
                 console.log(this.gameStatus);
         }
